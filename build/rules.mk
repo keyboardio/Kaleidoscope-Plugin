@@ -15,7 +15,7 @@ astyle:
 	find . -type f -name \*.h |xargs -n 1 astyle --style=google
 
 travis-test: travis-install-arduino
-	ARDUINO_PATH="$(shell pwd)/$(TRAVIS_ARDUINO)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
+	ARDUINO_PATH="$(shell pwd)/$(TRAVIS_ARDUINO)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
 
 %:	
 	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder $@
