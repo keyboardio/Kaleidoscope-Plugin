@@ -6,9 +6,7 @@ all: build-all
 
 # TODO check the shasum of the travis arduino file
 travis-install-arduino:
-ifeq ("$(wildcard $(TRAVIS_ARDUINO_FILE))", '')
 	wget http://downloads.arduino.cc/$(TRAVIS_ARDUINO_FILE)
-endif
 	tar xf $(TRAVIS_ARDUINO_FILE)
 
 astyle:
