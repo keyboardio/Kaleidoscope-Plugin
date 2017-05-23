@@ -1,6 +1,6 @@
 EXTRA_BUILDER_ARGS="-libraries ."
 
-.phony:
+all: build-all
 
 
 astyle:
