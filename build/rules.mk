@@ -4,8 +4,11 @@ EXTRA_BUILDER_ARGS="-libraries ."
 
 all: build-all
 
+# TODO check the shasum of the travis arduino file
 travis-install-arduino:
+ifeq ("$(wildcard $(TRAVIS_ARDUINO_FILE))", '')
 	wget http://downloads.arduino.cc/$(TRAVIS_ARDUINO_FILE)
+endif
 	tar xf $(TRAVIS_ARDUINO_FILE)
 
 astyle:
@@ -14,7 +17,7 @@ astyle:
 	find . -type f -name \*.h |xargs -n 1 astyle --style=google
 
 travis-test: travis-install-arduino
-	export ARDUINO_PATH=$(shell pwd)/$(TRAVIS_ARDUINO)
+	export ARDUINO_PATH="$(shell pwd)/$(TRAVIS_ARDUINO)"
 	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all
 
 %:	
