@@ -7,7 +7,6 @@ all: build-all
 travis-install-arduino:
 	wget http://downloads.arduino.cc/$(TRAVIS_ARDUINO_FILE)
 	tar xf $(TRAVIS_ARDUINO_FILE)
-	ln -s $(TRAVIS_ARDUINO) arduino
 
 astyle:
 	find . -type f -name \*.cpp |xargs -n 1 astyle --style=google
@@ -15,7 +14,7 @@ astyle:
 	find . -type f -name \*.h |xargs -n 1 astyle --style=google
 
 travis-test: travis-install-arduino
-	$(eval export ARDUINO_PATH=$(shell pwd)/arduino )
+	export $(eval ARDUINO_PATH=$(shell pwd)/$(TRAVIS_ARDUINO) )
 	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all
 
 %:	
