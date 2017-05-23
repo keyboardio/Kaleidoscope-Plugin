@@ -10,4 +10,4 @@ astyle:
 
 	
 %:	
-	../Kaleidoscope/tools/kaleidoscope-builder $@
+	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder $@
