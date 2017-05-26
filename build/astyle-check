@@ -3,7 +3,6 @@ if ! git diff --exit-code; then
   >&2 echo "'make astyle' found code style differences. Please make astyle and commit your changes"
   exit 1;
 fi
-
-echo "looks good!"
+echo "'make astyle' found no formatting differences. Yay!"
 exit 0;
 
