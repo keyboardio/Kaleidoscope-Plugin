@@ -9,5 +9,6 @@ ifeq ($(UNAME_S),Darwin)
 	BOARD_HARDWARE_PATH ?= $(HOME)/Library/Arduino/hardware
 endif
 
+PLUGIN_TEST_SUPPORT_DIR=build
 
 include build/*.mk
