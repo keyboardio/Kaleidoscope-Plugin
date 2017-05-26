@@ -1,8 +1,8 @@
 TRAVIS_ARDUINO=arduino-1.6.11
 TRAVIS_ARDUINO_FILE = $(TRAVIS_ARDUINO)-linux64.tar.xz
 EXTRA_BUILDER_ARGS="-libraries ."
-PLUGIN_TEST_SUPPORT_DIR ?= "$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope-Plugin/build/"
-PLUGIN_TEST_BIN_DIR ?= $(shell pwd)/$(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
+PLUGIN_TEST_SUPPORT_DIR ?= $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope-Plugin/build/
+PLUGIN_TEST_BIN_DIR ?= $(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
 all: build-all
 
 # TODO check the shasum of the travis arduino file
