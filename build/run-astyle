@@ -1,5 +1,4 @@
 #!/bin/sh
 
-ASTYLE_INVOCATON="astyle --style=google"
 ASTYLE_FILE_PATTERN='.h$\|.cpp$\|.ino$' 
-git ls-files |grep "$ASTYLE_FILE_PATTERN" | xargs -n 1 $ASTYLE_INVOCATION
+git ls-files |grep "$ASTYLE_FILE_PATTERN" | xargs -n 1 astyle --style=google
