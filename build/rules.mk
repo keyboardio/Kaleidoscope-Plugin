@@ -19,3 +19,7 @@ travis-test: travis-install-arduino
 
 %:	
 	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder $@
+
+
+travis-astyle-check: astyle
+	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope-Plugin/build/astyle-check
