@@ -6,6 +6,9 @@ PLUGIN_TEST_BIN_DIR ?= $(shell pwd)/$(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
 all: build-all
 
 # TODO check the shasum of the travis arduino file
+
+.PHONY: travis-install-arduino astyle travis-test travis-astyle-check travis-smoke-examples
+
 travis-install-arduino:
 	wget http://downloads.arduino.cc/$(TRAVIS_ARDUINO_FILE)
 	tar xf $(TRAVIS_ARDUINO_FILE)
