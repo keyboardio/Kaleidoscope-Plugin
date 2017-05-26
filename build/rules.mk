@@ -19,10 +19,10 @@ travis-test: travis-smoke-examples travis-astyle-check
 travis-smoke-examples: travis-install-arduino
 	ARDUINO_PATH="$(shell pwd)/$(TRAVIS_ARDUINO)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
 
-%:	
-	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder $@
-
 
 travis-astyle-check:
 	PATH=$(PLUGIN_TEST_BIN_DIR):$(PATH) $(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
 	$(PLUGIN_TEST_SUPPORT_DIR)/astyle-check
+
+%:	
+	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder $@
