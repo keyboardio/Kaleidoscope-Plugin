@@ -4,5 +4,6 @@ if ! git diff --exit-code; then
   exit 1;
 fi
 
+echo "looks good!"
 exit 0;
 
