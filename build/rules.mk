@@ -21,8 +21,7 @@ travis-smoke-examples: travis-install-arduino
 
 
 travis-astyle-check:
-	export PATH=$(PLUGIN_TEST_BIN_DIR):$(PATH) 
-	$(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
+	PATH=$(PLUGIN_TEST_BIN_DIR):$(PATH) $(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
 	$(PLUGIN_TEST_SUPPORT_DIR)/astyle-check
 
 %:	
