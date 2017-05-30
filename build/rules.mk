@@ -1,5 +1,5 @@
-TRAVIS_ARDUINO=arduino-1.6.11
-TRAVIS_ARDUINO_FILE = $(TRAVIS_ARDUINO)-linux64.tar.xz
+
+
 EXTRA_BUILDER_ARGS="-libraries ."
 PLUGIN_TEST_SUPPORT_DIR ?= $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope-Plugin/build/
 PLUGIN_TEST_BIN_DIR ?= $(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
@@ -10,10 +10,6 @@ PLUGIN_TEST_BIN_DIR ?= $(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
 
 all: build-all
 
-travis-install-arduino:
-	wget http://downloads.arduino.cc/$(TRAVIS_ARDUINO_FILE)
-	tar xf $(TRAVIS_ARDUINO_FILE)
-
 astyle:	
 	$(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
 
@@ -21,7 +17,7 @@ travis-test: travis-smoke-examples travis-astyle-check
 
 
 travis-smoke-examples: travis-install-arduino
-	ARDUINO_PATH="$(shell pwd)/$(TRAVIS_ARDUINO)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
+	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
 
 
 travis-astyle-check:
