@@ -9,6 +9,7 @@ PLUGIN_TEST_BIN_DIR ?= $(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
 .PHONY: travis-install-arduino astyle travis-test travis-check-astyle travis-smoke-examples test
 
 all: build-all
+	@: ## Do not remove this line, otherwise `make all` will trigger the `%` rule too.
 
 astyle:	
 	$(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
