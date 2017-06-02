@@ -26,6 +26,10 @@ check-astyle:
 	$(PLUGIN_TEST_SUPPORT_DIR)/astyle-check
 	
 
+
+cpplint:
+	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --filter=-whitespace,-legal/copyright,-build/include  --recursive --extensions=cpp,h,ino --exclude=$(BOARD_HARDWARE_PATH) --exclude=$(TRAVIS_ARDUINO_PATH) .
+
 travis-smoke-examples: travis-install-arduino
 	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
 
