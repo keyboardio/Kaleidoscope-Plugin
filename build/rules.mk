@@ -14,7 +14,7 @@ all: build-all
 astyle:	
 	$(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
 
-travis-test: travis-smoke-examples travis-check-astyle cpplint
+travis-test: travis-smoke-examples travis-check-astyle
 
 test: smoke-examples check-astyle cpplint-noisy
 
