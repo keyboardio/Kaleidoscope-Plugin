@@ -26,7 +26,7 @@ check-astyle:
 	$(PLUGIN_TEST_SUPPORT_DIR)/astyle-check
 	
 cpplint-noisy:
-	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --filter=-legal/copyright,-build/include,-readability/namespace  --recursive --extensions=cpp,h,ino --exclude=$(BOARD_HARDWARE_PATH) --exclude=$(TRAVIS_ARDUINO_PATH) .
+	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --filter=-legal/copyright,-build/include,-readability/namespace,-whitespace,+whitespace/parens  --recursive --extensions=cpp,h,ino --exclude=$(BOARD_HARDWARE_PATH) --exclude=$(TRAVIS_ARDUINO_PATH) .
 
 cpplint:
 	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --filter=-whitespace,-legal/copyright,-build/include,-readability/namespace  --recursive --extensions=cpp,h,ino --exclude=$(BOARD_HARDWARE_PATH) --exclude=$(TRAVIS_ARDUINO_PATH) .
