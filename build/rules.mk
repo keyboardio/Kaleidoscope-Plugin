@@ -6,7 +6,7 @@ PLUGIN_TEST_BIN_DIR ?= $(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
 
 # TODO check the shasum of the travis arduino file
 
-.PHONY: travis-install-arduino astyle travis-test travis-check-astyle travis-smoke-examples test
+.PHONY: travis-install-arduino astyle travis-test travis-check-astyle travis-smoke-examples test cpplint cpplint-noisy
 
 all: build-all
 	@: ## Do not remove this line, otherwise `make all` will trigger the `%` rule too.
@@ -14,9 +14,9 @@ all: build-all
 astyle:	
 	$(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
 
-travis-test: travis-smoke-examples travis-check-astyle
+travis-test: travis-smoke-examples travis-check-astyle cpplint
 
-test: smoke-examples check-astyle
+test: smoke-examples check-astyle cpplint-noisy
 
 smoke-examples:
 	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
