@@ -30,7 +30,7 @@ cpplint-noisy:
 
 
 cpplint:
-	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --filter=-whitespace,-legal/copyright,-build/include,-readability/namespace  --recursive --extensions=cpp,h,ino --exclude=$(BOARD_HARDWARE_PATH) --exclude=$(TRAVIS_ARDUINO) .
+	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --filter=-whitespace,-legal/copyright,-build/include,-readability/namespace  --recursive --extensions=cpp,h,ino --exclude=$(BOARD_HARDWARE_PATH)/* --exclude=$(TRAVIS_ARDUINO)/* .
 
 travis-smoke-examples: travis-install-arduino
 	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
