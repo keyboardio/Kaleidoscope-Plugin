@@ -4,4 +4,8 @@ TRAVIS_ARDUINO_PATH ?= $(shell pwd)/$(TRAVIS_ARDUINO)
 TRAVIS_ARDUINO_DOWNLOAD_URL = http://downloads.arduino.cc/$(TRAVIS_ARDUINO_FILE)
 
 travis-install-arduino:
-	if [ ! -d "$(TRAVIS_ARDUINO_PATH)" ]; then wget $(TRAVIS_ARDUINO_DOWNLOAD_URL); tar xf $(TRAVIS_ARDUINO_FILE); fi
+	@if [ ! -d "$(TRAVIS_ARDUINO_PATH)" ]; then \
+		echo "Installing Arduino..."; \
+		wget -O "$(TRAVIS_ARDUINO_FILE)" -c $(TRAVIS_ARDUINO_DOWNLOAD_URL); \
+		tar xf $(TRAVIS_ARDUINO_FILE); \
+	fi
