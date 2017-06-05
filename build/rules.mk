@@ -19,7 +19,7 @@ travis-test: travis-smoke-examples travis-check-astyle
 test: smoke-examples check-astyle cpplint-noisy
 
 smoke-examples:
-	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
+	$(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder build-all 
 
 check-astyle:
 	$(PLUGIN_TEST_SUPPORT_DIR)/run-astyle
@@ -33,7 +33,7 @@ cpplint:
 	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --filter=-whitespace,-legal/copyright,-build/include,-readability/namespace  --recursive --extensions=cpp,h,ino src examples
 
 travis-smoke-examples: travis-install-arduino
-	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder build-all 
+	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder build-all
 
 
 travis-check-astyle:
@@ -41,4 +41,4 @@ travis-check-astyle:
 	$(PLUGIN_TEST_SUPPORT_DIR)/astyle-check
 
 %:	
-	$(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope/tools/kaleidoscope-builder $@
+	$(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder $@
