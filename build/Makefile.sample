@@ -10,4 +10,4 @@ else
 BOARD_HARDWARE_PATH ?= $(HOME)/Arduino/hardware
 endif
 
-include $(BOARD_HARDWARE_PATH)/$(MAKEFILE_PREFIX)/*.mk
+include $(BOARD_HARDWARE_PATH)/$(MAKEFILE_PREFIX)/rules.mk
