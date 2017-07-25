@@ -1,12 +1,17 @@
-
-
 EXTRA_BUILDER_ARGS="-libraries ."
 PLUGIN_TEST_SUPPORT_DIR ?= $(BOARD_HARDWARE_PATH)/keyboardio/avr/libraries/Kaleidoscope-Plugin/tools/
 PLUGIN_TEST_BIN_DIR ?= $(PLUGIN_TEST_SUPPORT_DIR)/$(shell arch)/bin
 
+TRAVIS_ARDUINO=arduino-1.8.2
+TRAVIS_ARDUINO_FILE = $(TRAVIS_ARDUINO)-linux64.tar.xz
+TRAVIS_ARDUINO_PATH ?= $(shell pwd)/$(TRAVIS_ARDUINO)
+TRAVIS_ARDUINO_DOWNLOAD_URL = http://downloads.arduino.cc/$(TRAVIS_ARDUINO_FILE)
+
 # TODO check the shasum of the travis arduino file
 
 .PHONY: travis-install-arduino astyle travis-test travis-check-astyle travis-smoke-examples test cpplint cpplint-noisy
+
+.DEFAULT_GOAL := all
 
 all: build-all
 	@: ## Do not remove this line, otherwise `make all` will trigger the `%` rule too.
@@ -42,3 +47,11 @@ travis-check-astyle:
 
 %:	
 	$(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder $@
+
+
+travis-install-arduino:
+	@if [ ! -d "$(TRAVIS_ARDUINO_PATH)" ]; then \
+		echo "Installing Arduino..."; \
+		wget -O "$(TRAVIS_ARDUINO_FILE)" -c $(TRAVIS_ARDUINO_DOWNLOAD_URL); \
+		tar xf $(TRAVIS_ARDUINO_FILE); \
+	fi
