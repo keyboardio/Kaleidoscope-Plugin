@@ -37,8 +37,27 @@ cpplint-noisy:
 cpplint:
 	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --quiet --filter=-whitespace,-legal/copyright,-build/include,-readability/namespace  --recursive --extensions=cpp,h,ino src examples
 
+## NOTE: HERE BE DRAGONS, DO NOT CLEAN THIS UP!
+# When building outside of Arduino-Boards, we want to use the current library,
+# not whatever version is in Arduino-Boards at the time. To do so, we must tell
+# arduino-builder about the library, because the current directory is not
+# considered by default.
+#
+# Now, we can't use -libraries ., because arduino-builder will search for a
+# directory named like the library, and we don't have that. We are already in
+# the library directory at this point.
+#
+# So, we need a library outside of the current dir. We could use .., but we want
+# to be safe, to only have the current library there. For this reason, the
+# travis-smoke-examples target will create a current-libraries directory one
+# level up, symlink the current directory there, under the library name, and add
+# -libraries $(pwd)/../current-libraries to the arduino-builder arguments.
+#
+# All of this makes the builder consider the current library the best to use.
 travis-smoke-examples: travis-install-arduino
-	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder build-all
+	install -d ../current-libraries
+	ln -s $$(pwd) ../current-libraries/
+	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" EXTRA_BUILDER_ARGS="-libraries $$(pwd)/../current-libraries" $(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder build-all
 
 
 travis-check-astyle:
