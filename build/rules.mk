@@ -38,7 +38,9 @@ cpplint:
 	$(PLUGIN_TEST_SUPPORT_DIR)/cpplint.py  --quiet --filter=-whitespace,-legal/copyright,-build/include,-readability/namespace  --recursive --extensions=cpp,h,ino src examples
 
 travis-smoke-examples: travis-install-arduino
-	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" $(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder build-all
+	install -d ../current-libraries
+	ln -s $$(pwd) ../current-libraries/
+	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" EXTRA_BUILDER_ARGS="-libraries $$(pwd)/../current-libraries" $(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder build-all
 
 
 travis-check-astyle:
