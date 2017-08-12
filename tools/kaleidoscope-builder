@@ -49,7 +49,7 @@ flash () {
     reset_device
     sleep 3s
     find_bootloader_ports
-    flash_over_usb
+    flash_over_usb || flash_over_usb
 
 }
 
