@@ -54,6 +54,7 @@ flash () {
 }
 
 flash_over_usb () {
+    sleep 1s
     ${AVRDUDE} -q -q -C ${AVRDUDE_CONF} -p${MCU} -cavr109 -D -P ${DEVICE_PORT_BOOTLOADER} -b57600 "-Uflash:w:${HEX_FILE_PATH}:i"
 
 }
