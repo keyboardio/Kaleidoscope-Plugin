@@ -58,6 +58,13 @@ flash_over_usb () {
 
 }
 
+flash_from_bootloader() {
+	prepare_to_flash
+	find_bootloader_ports
+	flash_over_usb || flash_over_usb
+}
+
+
 program() {
     prepare_to_flash
     flash_with_programmer
