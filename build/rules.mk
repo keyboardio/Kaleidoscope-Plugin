@@ -58,6 +58,7 @@ travis-smoke-examples: travis-install-arduino
 	install -d ../current-libraries
 	ln -s $$(pwd) ../current-libraries/
 	ARDUINO_PATH="$(TRAVIS_ARDUINO_PATH)" BOARD_HARDWARE_PATH="$(BOARD_HARDWARE_PATH)" EXTRA_BUILDER_ARGS="-libraries $$(pwd)/../current-libraries" $(PLUGIN_TEST_SUPPORT_DIR)/kaleidoscope-builder build-all
+	rm -rf ../current-libraries
 
 
 travis-check-astyle:
