@@ -10,7 +10,6 @@ else
 BOARD_HARDWARE_PATH ?= $(HOME)/Arduino/hardware
 endif
 
-PLUGIN_TEST_SUPPORT_DIR=$(shell pwd)/tools
 
 include build/rules.mk
 
